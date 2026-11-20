@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liderança — Ordem Comemorativa de São Tomás de Acon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-ivory: #FFFAF5;
+            --color-stone-white: #F5F2ED;
+            --color-burgundy: #5C3D2E;
+            --color-gold: #D4AF6F;
+            --color-charcoal: #3C3C3C;
+            --color-warm-gray: #8B7355;
+            --color-light-gray: #E8DED0;
+            --font-serif: Georgia, serif;
+            --font-sans: 'Segoe UI', Roboto, sans-serif;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        html, body {
+            font-family: var(--font-sans);
+            color: var(--color-charcoal);
+            background: var(--color-ivory);
+        }
+
+        /* HEADER */
+        header {
+            background: var(--color-stone-white);
+            border-bottom: 1px solid var(--color-light-gray);
+            padding: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .logo h1 {
+            font-size: 20px;
+            color: var(--color-burgundy);
+            font-weight: 500;
+            font-family: var(--font-serif);
+            margin: 0;
+        }
+
+        .logo p {
+            font-size: 11px;
+            color: var(--color-warm-gray);
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        nav a {
+            color: var(--color-burgundy);
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--color-gold);
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, var(--color-burgundy) 0%, var(--color-warm-gray) 100%);
+            color: var(--color-ivory);
+            padding: 80px 16px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-family: var(--font-serif);
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 60px 16px;
+        }
+
+        section.light {
+            background: var(--color-ivory);
+        }
+
+        section.alt {
+            background: var(--color-stone-white);
+        }
+
+        .section-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 24px;
+            color: var(--color-burgundy);
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--color-gold);
+            padding-bottom: 12px;
+            font-family: var(--font-serif);
+        }
+
+        .section-intro {
+            font-size: 15px;
+            color: var(--color-charcoal);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        /* LEADERSHIP SECTION */
+        .leadership-group {
+            margin-bottom: 48px;
+        }
+
+        .leadership-group h3 {
+            font-size: 18px;
+            color: var(--color-burgundy);
+            font-family: var(--font-serif);
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--color-light-gray);
+        }
+
+        .leadership-card {
+            background: var(--color-stone-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--color-gold);
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 24px;
+            transition: all 0.2s;
+        }
+
+        .leadership-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .leadership-photo {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-warm-gray) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-ivory);
+            font-size: 14px;
+            text-align: center;
+            padding: 24px;
+        }
+
+        .leadership-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .leadership-content {
+            padding: 24px;
+        }
+
+        .leadership-name {
+            font-size: 18px;
+            color: var(--color-burgundy);
+            font-family: var(--font-serif);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .leadership-title {
+            font-size: 14px;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .leadership-description {
+            font-size: 14px;
+            color: var(--color-charcoal);
+            line-height: 1.7;
+        }
+
+        /* OFFICERS LIST */
+        .officers-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .officer {
+            padding: 16px;
+            border-left: 3px solid var(--color-gold);
+            background: rgba(212, 175, 111, 0.05);
+            border-radius: 4px;
+        }
+
+        .officer-name {
+            color: var(--color-burgundy);
+            font-weight: 500;
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+
+        .officer-title {
+            color: var(--color-warm-gray);
+            font-size: 12px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--color-burgundy);
+            color: var(--color-ivory);
+            padding: 48px 16px;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-section h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            color: var(--color-gold);
+            font-weight: 500;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            font-size: 13px;
+            color: var(--color-ivory);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-section a:hover {
+            color: var(--color-gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(212, 175, 111, 0.3);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .leadership-photo {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-container">
+        <a href="index.html" class="logo">
+            <h1>São Tomás</h1>
+            <p>de Acon</p>
+        </a>
+        <nav>
+            <a href="ordem.html">A Ordem</a>
+            <a href="historia.html">História</a>
+            <a href="lideranca.html">Liderança</a>
+            <a href="capelas.html">Capelas</a>
+            <a href="#">Contato</a>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Liderança</h1>
+        <p>A estrutura de governança da Ordem Comemorativa de São Tomás de Acon, desde sua autoridade central até a Província da América do Sul.</p>
+    </div>
+</section>
+
+<!-- CENTRAL AUTHORITY -->
+<section class="light">
+    <div class="section-container">
+        <h2>Autoridade Central</h2>
+        <p class="section-intro">A Ordem Comemorativa de São Tomás de Acon é governada pela autoridade central baseada na Inglaterra. A Província da América do Sul integra-se a esta estrutura internacional, funcionando sob a supervisão do Grand Master e do Conselho Supremo da Ordem.</p>
+
+        <div class="leadership-group">
+            <div class="leadership-card">
+                <div class="leadership-photo">
+                    <div style="text-align: center;">
+                        <div style="font-size: 12px; margin-bottom: 8px;">Fotografia do Grand Master</div>
+                        <div style="font-size: 11px; opacity: 0.8;">Sir Philip of Hamilton</div>
+                    </div>
+                </div>
+                <div class="leadership-content">
+                    <div class="leadership-name">Sir Philip of Hamilton</div>
+                    <div class="leadership-title">Most Worthy Grand Master</div>
+                    <div class="leadership-description">
+                        O Grand Master é o responsável supremo pela Ordem, presidindo o Conselho Supremo e supervisionando todas as Províncias e Capelas. Sir Philip of Hamilton lidera a Ordem desde a autoridade central em Londres.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROVINCIAL AUTHORITY -->
+<section class="alt">
+    <div class="section-container">
+        <h2>Liderança Provincial — América do Sul</h2>
+        <p class="section-intro">A Província da América do Sul foi constituída em janeiro de 2019 com a consagração das Capelas 129, 130 e 132 no Rio de Janeiro. Desde então, a Província é conduzida pelos seus Grandes Oficiais, sob a supervisão do Grand Master e em coordenação com a autoridade central britânica.</p>
+
+        <div class="leadership-group">
+            <h3>Grand Preceptor Provincial</h3>
+            <div class="leadership-card">
+                <div class="leadership-photo">
+                    <div style="text-align: center;">
+                        <div style="font-size: 12px; margin-bottom: 8px;">Sir Felipe de Macuco</div>
+                    </div>
+                </div>
+                <div class="leadership-content">
+                    <div class="leadership-name">Sir Felipe de Macuco</div>
+                    <div class="leadership-title">Grand Preceptor da Província da América do Sul</div>
+                    <div class="leadership-description">
+                        Felipe Eduardo Portela de Paulo é o principal responsável pela Província da América do Sul, coordenando as atividades das Capelas e representando a Ordem junto à autoridade central.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="leadership-group">
+            <h3>Grandes Oficiais Provinciais</h3>
+            <div class="officers-list">
+                <div class="officer">
+                    <div class="officer-name">Sir Wilson do Rio de Janeiro</div>
+                    <div class="officer-title">Grande Prior Provincial</div>
+                </div>
+                <div class="officer">
+                    <div class="officer-name">Sir Paulo</div>
+                    <div class="officer-title">Grande Marechal</div>
+                </div>
+                <div class="officer">
+                    <div class="officer-name">Sir Gustavo</div>
+                    <div class="officer-title">Grande Tesoureiro</div>
+                </div>
+                <div class="officer">
+                    <div class="officer-name">Sir Jorge de Vitória</div>
+                    <div class="officer-title">Grande Registrador</div>
+                </div>
+                <div class="officer">
+                    <div class="officer-name">Sir Rogério</div>
+                    <div class="officer-title">Grande Secretário</div>
+                </div>
+                <div class="officer">
+                    <div class="officer-name">Sir Mario de La Paz</div>
+                    <div class="officer-title">Representante Bolívia</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 32px; padding: 24px; background: var(--color-ivory); border-left: 4px solid var(--color-gold); border-radius: 4px;">
+            <p style="font-size: 14px; color: var(--color-charcoal); line-height: 1.7;">
+                <strong>Mais informações:</strong> Visite o site internacional da Ordem em
+                <a href="https://thomas-of-acon.org" style="color: var(--color-burgundy); text-decoration: underline;">thomas-of-acon.org</a>
+                para conhecer mais sobre a estrutura global e as atividades da autoridade central.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Nosso Mote</h3>
+            <p style="font-style: italic; margin-bottom: 8px;">Humilitas et Caritas</p>
+            <p>Humildade e Caridade</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Navegação</h3>
+            <a href="index.html">A Ordem</a>
+            <a href="historia.html">História</a>
+            <a href="lideranca.html">Liderança</a>
+            <a href="capelas.html">Capelas</a>
+            <a href="#">Contato</a>
+        </div>
+
+        <div class="footer-section">
+            <h3>Sobre</h3>
+            <p>Organização maçônica cristã britânica constituída em 1973. Independente e dedicada à humildade, caridade e serviço. Presente na América do Sul desde 2014.</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Ordem Comemorativa de São Tomás de Acon</p>
+        <p>Província da América do Sul</p>
+    </div>
+</footer>
+
+</body>
+</html>

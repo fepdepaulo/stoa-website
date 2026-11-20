@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordem Comemorativa de São Tomás de Acon — Província da América do Sul</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-ivory: #FFFAF5;
+            --color-stone-white: #F5F2ED;
+            --color-burgundy: #5C3D2E;
+            --color-gold: #D4AF6F;
+            --color-charcoal: #3C3C3C;
+            --color-warm-gray: #8B7355;
+            --color-light-gray: #E8DED0;
+            --font-serif: Georgia, serif;
+            --font-sans: 'Segoe UI', Roboto, sans-serif;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        html, body {
+            font-family: var(--font-sans);
+            color: var(--color-charcoal);
+            background: var(--color-ivory);
+            line-height: 1.6;
+        }
+
+        /* ========== HEADER ========== */
+        header {
+            background: var(--color-stone-white);
+            border-bottom: 1px solid var(--color-light-gray);
+            padding: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .logo h1 {
+            font-size: 20px;
+            color: var(--color-burgundy);
+            font-weight: 500;
+            font-family: var(--font-serif);
+            margin: 0;
+        }
+
+        .logo p {
+            font-size: 11px;
+            color: var(--color-warm-gray);
+            margin: 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        nav a {
+            color: var(--color-burgundy);
+            text-decoration: none;
+            transition: 0.2s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+        }
+
+        nav a:hover {
+            color: var(--color-gold);
+            border-bottom-color: var(--color-gold);
+        }
+
+        .lang-toggle {
+            color: var(--color-gold);
+            font-weight: 500;
+            margin-left: 8px;
+            padding-left: 8px;
+            border-left: 1px solid var(--color-light-gray);
+            text-decoration: none;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            background: linear-gradient(135deg, var(--color-burgundy) 0%, var(--color-warm-gray) 100%);
+            color: var(--color-ivory);
+            padding: 80px 16px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-family: var(--font-serif);
+            margin-bottom: 16px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.7;
+            opacity: 0.95;
+        }
+
+        /* ========== SECTION ========== */
+        section {
+            padding: 60px 16px;
+        }
+
+        section.light {
+            background: var(--color-ivory);
+        }
+
+        section.alt {
+            background: var(--color-stone-white);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 24px;
+            color: var(--color-burgundy);
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--color-gold);
+            padding-bottom: 12px;
+            font-family: var(--font-serif);
+        }
+
+        .section-intro {
+            font-size: 15px;
+            color: var(--color-charcoal);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* ========== GRID ========== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        /* ========== CARD ========== */
+        .card {
+            background: var(--color-stone-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card.gold-border {
+            border: 2px solid var(--color-gold);
+        }
+
+        .card-content {
+            padding: 24px;
+        }
+
+        .card h3 {
+            color: var(--color-burgundy);
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-family: var(--font-serif);
+        }
+
+        .card p {
+            font-size: 14px;
+            color: var(--color-charcoal);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ========== LEADERSHIP ========== */
+        .leadership-highlight {
+            background: var(--color-ivory);
+            padding: 24px;
+            border-left: 4px solid var(--color-gold);
+            margin: 32px 0;
+            border-radius: 4px;
+        }
+
+        .leadership-highlight h3 {
+            color: var(--color-burgundy);
+            font-size: 16px;
+            font-family: var(--font-serif);
+            margin-bottom: 8px;
+        }
+
+        .leadership-highlight p {
+            font-size: 14px;
+            color: var(--color-warm-gray);
+            margin: 0;
+            font-style: italic;
+        }
+
+        .officers-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+
+        .officer {
+            padding: 12px;
+            border-left: 3px solid var(--color-gold);
+            background: rgba(212, 175, 111, 0.05);
+            border-radius: 2px;
+        }
+
+        .officer-name {
+            color: var(--color-burgundy);
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .officer-title {
+            color: var(--color-warm-gray);
+            font-size: 12px;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--color-burgundy);
+            color: var(--color-ivory);
+            padding: 48px 16px;
+            margin-top: 48px;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-section h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            color: var(--color-gold);
+            font-weight: 500;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            font-size: 13px;
+            color: var(--color-ivory);
+            text-decoration: none;
+            transition: 0.2s;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-section a:hover {
+            color: var(--color-gold);
+        }
+
+        .footer-motto {
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(212, 175, 111, 0.3);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--color-light-gray);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 40px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-container">
+        <a href="#" class="logo">
+            <h1>São Tomás</h1>
+            <p>de Acon</p>
+        </a>
+        <nav>
+            <a href="ordem.html">A Ordem</a>
+            <a href="historia.html">História</a>
+            <a href="lideranca.html">Liderança</a>
+            <a href="capelas.html">Capelas</a>
+            <a href="#">Contato</a>
+            <span class="lang-toggle">EN</span>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Ordem Comemorativa de São Tomás de Acon</h1>
+        <p>Organização maçônica cristã britânica dedicada à humildade, caridade e serviço. Presente na América do Sul desde 2014.</p>
+    </div>
+</section>
+
+<!-- A ORDEM -->
+<section class="light">
+    <div class="section-container">
+        <h2>A Ordem</h2>
+        <p class="section-intro">Fundada em 1973 como revivificação de uma tradição que remonta às Cruzadas e ao martírio de Thomas Becket, a Ordem Comemorativa de São Tomás de Acon é uma organização independente dedicada à preservação de princípios de humildade, caridade e serviço cristão. Operamos em Províncias regionais, sendo a Província da América do Sul constituída em janeiro de 2019 no Rio de Janeiro.</p>
+
+        <div class="grid">
+            <div class="card gold-border">
+                <div class="card-content">
+                    <h3>Humildade</h3>
+                    <p>Reconhecer nossas limitações e servir sem busca de reconhecimento pessoal. Fundamento espiritual de toda ação.</p>
+                </div>
+            </div>
+
+            <div class="card gold-border">
+                <div class="card-content">
+                    <h3>Caridade</h3>
+                    <p>Compaixão ativa e serviço ao próximo. Compromisso com auxílio social, educação moral e alívio do sofrimento.</p>
+                </div>
+            </div>
+
+            <div class="card gold-border">
+                <div class="card-content">
+                    <h3>Justiça</h3>
+                    <p>Retidão de caráter e equidade nas relações. Defender o fraco e agir conforme princípios cristãos.</p>
+                </div>
+            </div>
+
+            <div class="card gold-border">
+                <div class="card-content">
+                    <h3>Fé</h3>
+                    <p>Fundamento cristão. Confiança em Deus e dedicação aos valores eternos que transcendem interesses mundanos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LIDERANÇA PROVINCIAL -->
+<section class="alt">
+    <div class="section-container">
+        <h2>Liderança Provincial — América do Sul</h2>
+
+        <div class="leadership-highlight">
+            <h3>Grande Preceptor Provincial</h3>
+            <p>Sir Felipe de Macuco (Felipe Eduardo Portela de Paulo)</p>
+        </div>
+
+        <p class="section-intro">A Província da América do Sul é conduzida por um conjunto de Grandes Oficiais responsáveis pelas Capelas e pela coordenação com a Autoridade Central britânica. Abaixo, os principais oficiais:</p>
+
+        <div class="officers-list">
+            <div class="officer">
+                <div class="officer-name">Sir Wilson do Rio de Janeiro</div>
+                <div class="officer-title">Grande Prior Provincial</div>
+            </div>
+            <div class="officer">
+                <div class="officer-name">Sir Paulo</div>
+                <div class="officer-title">Grande Marechal</div>
+            </div>
+            <div class="officer">
+                <div class="officer-name">Sir Gustavo</div>
+                <div class="officer-title">Grande Tesoureiro</div>
+            </div>
+            <div class="officer">
+                <div class="officer-name">Sir Jorge de Vitória</div>
+                <div class="officer-title">Grande Registrador</div>
+            </div>
+            <div class="officer">
+                <div class="officer-name">Sir Rogério</div>
+                <div class="officer-title">Grande Secretário</div>
+            </div>
+            <div class="officer">
+                <div class="officer-name">Sir Mario de La Paz</div>
+                <div class="officer-title">Representante Bolívia</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CAPELAS BRASILEIRAS -->
+<section class="light">
+    <div class="section-container">
+        <h2>Nossas Capelas</h2>
+        <p class="section-intro">A Ordem opera através de Capelas locais, centros de atividades religiosas, educacionais e caritativas. Atualmente temos quatro Capelas constituídas no Brasil:</p>
+
+        <div class="grid grid-4">
+            <div class="card gold-border">
+                <div class="card-content">
+                    <p style="font-size: 12px; color: var(--color-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 500;">Capela Nº 113</p>
+                    <h3>São Paulo</h3>
+                    <p><strong>Venerável Mestre:</strong> Grão-Mestre Desembargador Murilo Pinto</p>
+                    <p style="margin-top: 12px; font-size: 13px; color: var(--color-warm-gray); border-top: 1px solid var(--color-light-gray); padding-top: 12px;"><strong>Consagrada:</strong> 16 de junho de 2014</p>
+                </div>
+            </div>
+
+            <div class="card gold-border">
+                <div class="card-content">
+                    <p style="font-size: 12px; color: var(--color-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 500;">Capela Nº 129</p>
+                    <h3>Rio de Janeiro</h3>
+                    <p><strong>Venerável Mestre:</strong> Mestre Felício de Paulo</p>
+                    <p style="margin-top: 12px; font-size: 13px; color: var(--color-warm-gray); border-top: 1px solid var(--color-light-gray); padding-top: 12px;"><strong>Consagrada:</strong> Janeiro de 2019</p>
+                </div>
+            </div>
+
+            <div class="card gold-border">
+                <div class="card-content">
+                    <p style="font-size: 12px; color: var(--color-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 500;">Capela Nº 130</p>
+                    <h3>Rio de Janeiro</h3>
+                    <p><strong>Venerável Mestre:</strong> Venerável Mestre Padre João Ribeiro</p>
+                    <p style="margin-top: 12px; font-size: 13px; color: var(--color-warm-gray); border-top: 1px solid var(--color-light-gray); padding-top: 12px;"><strong>Consagrada:</strong> Janeiro de 2019</p>
+                </div>
+            </div>
+
+            <div class="card gold-border">
+                <div class="card-content">
+                    <p style="font-size: 12px; color: var(--color-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 500;">Capela Nº 132</p>
+                    <h3>Rio de Janeiro</h3>
+                    <p><strong>Venerável Mestre:</strong> Espírito Santo</p>
+                    <p style="margin-top: 12px; font-size: 13px; color: var(--color-warm-gray); border-top: 1px solid var(--color-light-gray); padding-top: 12px;"><strong>Consagrada:</strong> Janeiro de 2019</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Nosso Mote</h3>
+            <p class="footer-motto">Humilitas et Caritas</p>
+            <p>Humildade e Caridade</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Navegação</h3>
+            <a href="ordem.html">A Ordem</a>
+            <a href="historia.html">História</a>
+            <a href="lideranca.html">Liderança</a>
+            <a href="capelas.html">Capelas</a>
+            <a href="#">Contato</a>
+        </div>
+
+        <div class="footer-section">
+            <h3>Sobre</h3>
+            <p>Organização maçônica cristã britânica constituída em 1973. Independente e dedicada à humildade, caridade e serviço. Presente na América do Sul desde 2014.</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Ordem Comemorativa de São Tomás de Acon</p>
+        <p>Província da América do Sul</p>
+    </div>
+</footer>
+
+</body>
+</html>

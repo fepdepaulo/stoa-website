@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossas Capelas — Ordem Comemorativa de São Tomás de Acon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-ivory: #FFFAF5;
+            --color-stone-white: #F5F2ED;
+            --color-burgundy: #5C3D2E;
+            --color-gold: #D4AF6F;
+            --color-charcoal: #3C3C3C;
+            --color-warm-gray: #8B7355;
+            --color-light-gray: #E8DED0;
+            --font-serif: Georgia, serif;
+            --font-sans: 'Segoe UI', Roboto, sans-serif;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        html, body {
+            font-family: var(--font-sans);
+            color: var(--color-charcoal);
+            background: var(--color-ivory);
+        }
+
+        /* HEADER */
+        header {
+            background: var(--color-stone-white);
+            border-bottom: 1px solid var(--color-light-gray);
+            padding: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .logo h1 {
+            font-size: 20px;
+            color: var(--color-burgundy);
+            font-weight: 500;
+            font-family: var(--font-serif);
+            margin: 0;
+        }
+
+        .logo p {
+            font-size: 11px;
+            color: var(--color-warm-gray);
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        nav a {
+            color: var(--color-burgundy);
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--color-gold);
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, var(--color-burgundy) 0%, var(--color-warm-gray) 100%);
+            color: var(--color-ivory);
+            padding: 80px 16px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-family: var(--font-serif);
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* CONTENT */
+        section {
+            padding: 60px 16px;
+            background: var(--color-ivory);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 24px;
+            color: var(--color-burgundy);
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--color-gold);
+            padding-bottom: 12px;
+            font-family: var(--font-serif);
+        }
+
+        .section-intro {
+            font-size: 15px;
+            color: var(--color-charcoal);
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        /* FILTERS */
+        .filters {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .filter-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-burgundy);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: transparent;
+            color: var(--color-burgundy);
+            border: 1px solid var(--color-burgundy);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover {
+            background: var(--color-burgundy);
+            color: var(--color-ivory);
+        }
+
+        .filter-btn.active {
+            background: var(--color-burgundy);
+            color: var(--color-ivory);
+        }
+
+        /* GRID */
+        .chapel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .chapel-card {
+            background: var(--color-stone-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--color-gold);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s;
+            cursor: default;
+        }
+
+        .chapel-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .chapel-header {
+            padding: 24px;
+            background: var(--color-burgundy);
+            color: var(--color-ivory);
+        }
+
+        .chapel-number {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 8px;
+            opacity: 0.9;
+        }
+
+        .chapel-header h3 {
+            font-size: 18px;
+            margin: 0;
+            font-weight: 500;
+            font-family: var(--font-serif);
+        }
+
+        .chapel-content {
+            padding: 24px;
+            flex: 1;
+        }
+
+        .chapel-info {
+            margin-bottom: 16px;
+        }
+
+        .chapel-label {
+            font-size: 13px;
+            color: var(--color-warm-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0 0 4px;
+        }
+
+        .chapel-value {
+            font-size: 14px;
+            color: var(--color-charcoal);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .chapel-value.master {
+            color: var(--color-burgundy);
+        }
+
+        .chapel-value.date {
+            font-style: italic;
+            color: var(--color-gold);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 16px;
+            color: var(--color-warm-gray);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--color-burgundy);
+            color: var(--color-ivory);
+            padding: 48px 16px;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-section h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            color: var(--color-gold);
+            font-weight: 500;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            font-size: 13px;
+            color: var(--color-ivory);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-section a:hover {
+            color: var(--color-gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(212, 175, 111, 0.3);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .chapel-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-container">
+        <a href="index.html" class="logo">
+            <h1>São Tomás</h1>
+            <p>de Acon</p>
+        </a>
+        <nav>
+            <a href="ordem.html">A Ordem</a>
+            <a href="historia.html">História</a>
+            <a href="lideranca.html">Liderança</a>
+            <a href="capelas.html">Capelas</a>
+            <a href="#">Contato</a>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Nossas Capelas</h1>
+        <p>A Ordem opera através de Capelas locais espalhadas pela América do Sul. Cada Capela é um centro de atividades religiosas, educacionais e caritativas.</p>
+    </div>
+</section>
+
+<!-- CONTENT -->
+<section>
+    <div class="section-container">
+        <!-- Filters -->
+        <div class="filters">
+            <span class="filter-label">Filtrar por país:</span>
+            <button class="filter-btn active" onclick="filterChapels('todos')">Todos os países</button>
+            <button class="filter-btn" onclick="filterChapels('Brasil')">Brasil</button>
+            <button class="filter-btn" onclick="filterChapels('Bolívia')">Bolívia</button>
+        </div>
+
+        <!-- Chapel Grid -->
+        <div class="chapel-grid" id="chapelGrid">
+            <!-- Capelas serão inseridas aqui por JavaScript -->
+        </div>
+
+        <div id="noResults" class="no-results" style="display: none;">
+            <p>Nenhuma capela encontrada para este filtro.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Nosso Mote</h3>
+            <p style="font-style: italic; margin-bottom: 8px;">Humilitas et Caritas</p>
+            <p>Humildade e Caridade</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Navegação</h3>
+            <a href="index.html">A Ordem</a>
+            <a href="historia.html">História</a>
+            <a href="lideranca.html">Liderança</a>
+            <a href="capelas.html">Capelas</a>
+            <a href="#">Contato</a>
+        </div>
+
+        <div class="footer-section">
+            <h3>Sobre</h3>
+            <p>Organização maçônica cristã britânica constituída em 1973. Independente e dedicada à humildade, caridade e serviço. Presente na América do Sul desde 2014.</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Ordem Comemorativa de São Tomás de Acon</p>
+        <p>Província da América do Sul</p>
+    </div>
+</footer>
+
+<script>
+    // Dados das capelas
+    const chapels = [
+        {
+            number: 113,
+            name: 'São Paulo',
+            master: 'Grão-Mestre Desembargador Murilo Pinto',
+            city: 'São Paulo',
+            country: 'Brasil',
+            founded: '16 de junho de 2014'
+        },
+        {
+            number: 129,
+            name: 'Rio de Janeiro I',
+            master: 'Mestre Felício de Paulo',
+            city: 'Rio de Janeiro',
+            country: 'Brasil',
+            founded: 'Janeiro de 2019'
+        },
+        {
+            number: 130,
+            name: 'Rio de Janeiro II',
+            master: 'Venerável Mestre Padre João Ribeiro',
+            city: 'Rio de Janeiro',
+            country: 'Brasil',
+            founded: 'Janeiro de 2019'
+        },
+        {
+            number: 132,
+            name: 'Spiritus Sanctus',
+            master: 'Venerável Mestre',
+            city: 'Rio de Janeiro',
+            country: 'Brasil',
+            founded: 'Janeiro de 2019'
+        }
+    ];
+
+    let currentFilter = 'todos';
+
+    function renderChapels() {
+        const grid = document.getElementById('chapelGrid');
+        const noResults = document.getElementById('noResults');
+
+        const filtered = currentFilter === 'todos'
+            ? chapels
+            : chapels.filter(c => c.country === currentFilter);
+
+        if (filtered.length === 0) {
+            grid.style.display = 'none';
+            noResults.style.display = 'block';
+            return;
+        }
+
+        grid.style.display = 'grid';
+        noResults.style.display = 'none';
+
+        grid.innerHTML = filtered.map(chapel => `
+            <div class="chapel-card">
+                <div class="chapel-header">
+                    <p class="chapel-number">Capela Nº ${chapel.number}</p>
+                    <h3>${chapel.name}</h3>
+                </div>
+                <div class="chapel-content">
+                    <div class="chapel-info">
+                        <p class="chapel-label">Venerável Mestre</p>
+                        <p class="chapel-value master">${chapel.master}</p>
+                    </div>
+                    <div class="chapel-info">
+                        <p class="chapel-label">Localização</p>
+                        <p class="chapel-value">${chapel.city}, ${chapel.country}</p>
+                    </div>
+                    <div class="chapel-info">
+                        <p class="chapel-label">Consagrada em</p>
+                        <p class="chapel-value date">${chapel.founded}</p>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function filterChapels(country) {
+        currentFilter = country;
+
+        // Atualizar botões ativos
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+
+        renderChapels();
+    }
+
+    // Renderizar na carga
+    renderChapels();
+</script>
+
+</body>
+</html>

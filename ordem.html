@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Ordem — Ordem Comemorativa de São Tomás de Acon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-ivory: #FFFAF5;
+            --color-stone-white: #F5F2ED;
+            --color-burgundy: #5C3D2E;
+            --color-gold: #D4AF6F;
+            --color-charcoal: #3C3C3C;
+            --color-warm-gray: #8B7355;
+            --color-light-gray: #E8DED0;
+            --font-serif: Georgia, serif;
+            --font-sans: 'Segoe UI', Roboto, sans-serif;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        html, body {
+            font-family: var(--font-sans);
+            color: var(--color-charcoal);
+            background: var(--color-ivory);
+        }
+
+        /* HEADER */
+        header {
+            background: var(--color-stone-white);
+            border-bottom: 1px solid var(--color-light-gray);
+            padding: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .logo h1 {
+            font-size: 20px;
+            color: var(--color-burgundy);
+            font-weight: 500;
+            font-family: var(--font-serif);
+            margin: 0;
+        }
+
+        .logo p {
+            font-size: 11px;
+            color: var(--color-warm-gray);
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        nav a {
+            color: var(--color-burgundy);
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--color-gold);
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, var(--color-burgundy) 0%, var(--color-warm-gray) 100%);
+            color: var(--color-ivory);
+            padding: 80px 16px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-family: var(--font-serif);
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 60px 16px;
+        }
+
+        section.light {
+            background: var(--color-ivory);
+        }
+
+        section.alt {
+            background: var(--color-stone-white);
+        }
+
+        .section-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 24px;
+            color: var(--color-burgundy);
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--color-gold);
+            padding-bottom: 12px;
+            font-family: var(--font-serif);
+        }
+
+        .section-text {
+            font-size: 15px;
+            color: var(--color-charcoal);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--color-stone-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card.gold-border {
+            border: 2px solid var(--color-gold);
+        }
+
+        .card.burgundy-header {
+            border: none;
+        }
+
+        .card.burgundy-header .card-header {
+            background: var(--color-burgundy);
+            color: var(--color-ivory);
+            padding: 16px;
+            border-left: 4px solid var(--color-gold);
+        }
+
+        .card.burgundy-header .card-header h3 {
+            margin: 0;
+            font-size: 16px;
+            font-family: var(--font-serif);
+        }
+
+        .card.gold-border .card-content {
+            padding: 24px;
+        }
+
+        .card.burgundy-header .card-content {
+            padding: 20px;
+        }
+
+        .card h3 {
+            color: var(--color-burgundy);
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-family: var(--font-serif);
+        }
+
+        .card p {
+            font-size: 14px;
+            color: var(--color-charcoal);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--color-burgundy);
+            color: var(--color-ivory);
+            padding: 48px 16px;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-section h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            color: var(--color-gold);
+            font-weight: 500;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            font-size: 13px;
+            color: var(--color-ivory);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-section a:hover {
+            color: var(--color-gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(212, 175, 111, 0.3);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-container">
+        <a href="index.html" class="logo">
+            <h1>São Tomás</h1>
+            <p>de Acon</p>
+        </a>
+        <nav>
+            <a href="ordem.html">A Ordem</a>
+            <a href="historia.html">História</a>
+            <a href="lideranca.html">Liderança</a>
+            <a href="capelas.html">Capelas</a>
+            <a href="#">Contato</a>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>A Ordem</h1>
+        <p>Uma organização maçônica cristã dedicada à humildade, caridade e serviço.</p>
+    </div>
+</section>
+
+<!-- INSTITUTIONAL SECTION -->
+<section class="light">
+    <div class="section-container">
+        <h2>Caráter Institucional</h2>
+        <p class="section-text">Fundada em 1973, a Ordem Comemorativa de São Tomás de Acon é uma organização maçônica cristã britânica dedicada à preservação de uma tradição que se remonta às Cruzadas e ao martírio de Thomas Becket. A Ordem opera independentemente e é guiada pelo mote <em>Humilitas et Caritas</em>.</p>
+        <p class="section-text">A Ordem é governada por uma Autoridade Central baseada na Inglaterra e organiza-se em Províncias regionais. Cada Província é responsável por suas Capelas locais, que funcionam como centros de atividades espirituais, educacionais e caritativas.</p>
+
+        <div class="grid">
+            <div class="card burgundy-header">
+                <div class="card-header">
+                    <h3>Filiação e Admissão</h3>
+                </div>
+                <div class="card-content">
+                    <p>A Ordem é aberta a cristãos de boa reputação e de moralidade exemplar. A admissão requer patrocínio de membros já consagrados e aprovação formal pela Capela.</p>
+                </div>
+            </div>
+
+            <div class="card burgundy-header">
+                <div class="card-header">
+                    <h3>Caridade e Serviço</h3>
+                </div>
+                <div class="card-content">
+                    <p>O compromisso com a caridade é central à identidade da Ordem. Nossas Capelas engajam-se em atividades de auxílio social, suporte a comunidades vulneráveis e educação moral dentro dos princípios cristãos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRINCIPLES SECTION -->
+<section class="alt">
+    <div class="section-container">
+        <h2>Nossos Princípios Fundamentais</h2>
+
+        <div class="grid grid-4">
+            <div class="card gold-border">
+                <div class="card-content">
+                    <h3>Humildade</h3>
+                    <p>Reconhecer nossas limitações e servir sem busca de reconhecimento pessoal. Fundamento espiritual de toda ação.</p>
+                </div>
+            </div>
+
+            <div class="card gold-border">
+                <div class="card-content">
+                    <h3>Caridade</h3>
+                    <p>Compaixão ativa e serviço ao próximo. Compromisso com auxílio social, educação moral e alívio do sofrimento.</p>
+                </div>
+            </div>
+
+            <div class="card gold-border">
+                <div class="card-content">
+                    <h3>Justiça</h3>
+                    <p>Retidão de caráter e equidade nas relações. Defender o fraco e agir conforme princípios cristãos.</p>
+                </div>
+            </div>
+
+            <div class="card gold-border">
+                <div class="card-content">
+                    <h3>Fé</h3>
+                    <p>Fundamento cristão. Confiança em Deus e dedicação aos valores eternos que transcendem interesses mundanos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Nosso Mote</h3>
+            <p style="font-style: italic; margin-bottom: 8px;">Humilitas et Caritas</p>
+            <p>Humildade e Caridade</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Navegação</h3>
+            <a href="index.html">A Ordem</a>
+            <a href="historia.html">História</a>
+            <a href="lideranca.html">Liderança</a>
+            <a href="capelas.html">Capelas</a>
+            <a href="#">Contato</a>
+        </div>
+
+        <div class="footer-section">
+            <h3>Sobre</h3>
+            <p>Organização maçônica cristã britânica constituída em 1973. Independente e dedicada à humildade, caridade e serviço. Presente na América do Sul desde 2014.</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Ordem Comemorativa de São Tomás de Acon</p>
+        <p>Província da América do Sul</p>
+    </div>
+</footer>
+
+</body>
+</html>
