@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Chapels — The Commemorative Order of St Thomas of Acon</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <a href="index.html" class="logo">
+            <h1>St Thomas</h1>
+            <p>of Acon</p>
+        </a>
+        <nav>
+            <a href="ordem.html">The Order</a>
+            <a href="historia.html">History</a>
+            <a href="lideranca.html">Leadership</a>
+            <a href="capelas.html">Chapels</a>
+            <a href="regalia.html">Regalia</a>
+        </nav>
+        <div class="lang-switch">
+            <a href="../capelas.html" title="Português" aria-label="Português"><svg viewBox="0 0 40 28"><rect width="40" height="28" fill="#009c3b"/><polygon points="20,3 37,14 20,25 3,14" fill="#ffdf00"/><circle cx="20" cy="14" r="6.5" fill="#002776"/></svg></a>
+            <a href="capelas.html" class="active" title="English" aria-label="English"><svg viewBox="0 0 60 30"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="2"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg></a>
+        </div>
+        <a href="#" class="btn-acesso" aria-disabled="true" title="In preparation">System access</a>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Our Chapels</h1>
+        <p>The Order works through local Chapels across South America. Each Chapel is a centre of religious, educational and charitable activity.</p>
+    </div>
+</section>
+
+<section class="light">
+    <div class="section-container">
+        <div class="banner-provincial">
+            <img src="../img/banners/provincial.png" alt="Provincial Banner of the Province of South America">
+            <div>
+                <h2 style="border: none; margin-bottom: 12px; padding: 0;">Provincial Banner</h2>
+                <p>Stone-white field with the red cross of the Order, fimbriated of the field. In the first quarter, the scallop shell of the Order; in the second, the Southern Cross, with five gold stars.</p>
+                <p>Each Chapel bears this Provincial banner with its own device, placed at the fesse point of the cross.</p>
+                <p class="blazon">Banner approved under §6.6 of the Constitutions of the Order.</p>
+            </div>
+        </div>
+
+        <div class="map-wrap">
+            <div id="chapelMap" aria-label="Map of the Chapels"></div>
+            <div class="map-side">
+                <input type="search" id="searchInput" class="search-input" placeholder="Search by name, number or city">
+                <div class="filters" style="margin-bottom: 0;">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="Brazil">Brazil</button>
+                    <button class="filter-btn" data-filter="Bolivia">Bolivia</button>
+                </div>
+                <div class="chapel-detail" id="chapelDetail">
+                    <p>Select a Chapel on the map or in the list to see its details.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="chapel-grid" id="chapelGrid"></div>
+        <div id="noResults" class="no-results" style="display: none;"><p>No Chapel found for this filter.</p></div>
+        <p class="pending-note">The Bolivian Chapels await confirmation of their constitution, names, numbers and meeting places. Map markers sit at the centre of each city; the “View on Google Maps” link opens the exact meeting place.</p>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Our Motto</h3>
+            <p class="footer-motto">Humilitas et Caritas</p>
+            <p>Humility and Charity</p>
+        </div>
+        <div class="footer-section">
+            <h3>Navigation</h3>
+            <a href="index.html">The Order</a>
+            <a href="historia.html">History</a>
+            <a href="lideranca.html">Leadership</a>
+            <a href="capelas.html">Chapels</a>
+            <a href="regalia.html">Regalia</a>
+        </div>
+        <div class="footer-section">
+            <h3>About</h3>
+            <p>A British Masonic Christian organisation established in 1973. Independent and dedicated to humility, charity and service. Present in South America since 2014.</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 The Commemorative Order of St Thomas of Acon</p>
+        <p>Province of South America</p>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+    // Data taken from each Chapel's by-laws (meeting places and dates)
+    const chapels = [
+        {
+            number: 113, name: 'Grão Mestre Desembargador Murilo Pinto', banner: '../img/banners/ch113.jpg',
+            master: 'Grão-Mestre Desembargador Murilo Pinto',
+            city: 'São Paulo', uf: 'SP', country: 'Brazil', founded: '16 June 2014',
+            address: 'Rua Augusta 719, Sobreloja, Bairro Consolação, São Paulo/SP, CEP 01305-100',
+            meetings: '1st Wednesday of April and June; 3rd Wednesday of August and October',
+            device: 'Effigy of the Patron, Grão-Mestre Desembargador Murilo Pinto, at the centre of the cross.',
+            lat: -23.5505, lng: -46.6333
+        },
+        {
+            number: 129, name: 'Mestre Felício de Paulo', banner: '../img/banners/ch129.jpg',
+            master: 'Master Felício de Paulo',
+            city: 'Rio de Janeiro', uf: 'RJ', country: 'Brazil', founded: 'January 2019',
+            address: 'Rua Buenos Aires 314, Centro, Rio de Janeiro/RJ, CEP 20061-001',
+            meetings: '1st Saturday of April, June, August and October',
+            device: 'A mallard in flight, at the centre of the cross.',
+            lat: -22.9068, lng: -43.1729
+        },
+        {
+            number: 130, name: 'Venerável Mestre Padre João Ribeiro', banner: '../img/banners/ch130.jpg',
+            master: 'Venerável Mestre Padre João Ribeiro',
+            city: 'Recife', uf: 'PE', country: 'Brazil', founded: 'January 2019',
+            address: 'Rua da Aurora 277, Boa Vista, Recife/PE, CEP 50050-000',
+            meetings: '2nd Saturday of March, June, September and December',
+            device: 'Effigy of the Patron, Venerável Mestre Padre João Ribeiro, at the centre of the cross.',
+            lat: -8.0476, lng: -34.8770
+        },
+        {
+            number: 132, name: 'Spiritus Sanctus', banner: '../img/banners/ch132.jpg',
+            master: 'a confirmar',
+            city: 'Vitória', uf: 'ES', country: 'Brazil', founded: 'January 2019',
+            address: 'Rua Duque de Caxias 139, Centro, Vitória/ES, CEP 29010-120',
+            meetings: '3rd Friday of March, May, August and October',
+            device: 'A dove descending, the Holy Spirit, at the centre of the cross.',
+            lat: -20.3155, lng: -40.3128
+        }
+    ];
+
+    let currentFilter = 'all';
+    let currentSearch = '';
+    const markers = {};
+
+    const map = L.map('chapelMap').setView([-14.2, -49.5], 4);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        maxZoom: 18,
+        subdomains: 'abcd',
+        attribution: '&copy; OpenStreetMap &copy; CARTO'
+    }).addTo(map);
+
+    function mapsLink(c) {
+        return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(c.address);
+    }
+
+    function visibleChapels() {
+        const q = currentSearch.trim().toLowerCase();
+        return chapels.filter(c => {
+            const byCountry = currentFilter === 'all' || c.country === currentFilter;
+            const bySearch = !q || [String(c.number), c.name, c.city, c.master].some(v => v.toLowerCase().includes(q));
+            return byCountry && bySearch;
+        });
+    }
+
+    function showDetail(c) {
+        document.getElementById('chapelDetail').innerHTML = `
+            <p class="chapel-label" style="margin:0;">Chapel No. ${c.number}</p>
+            <h3>${c.name}</h3>
+            <img class="banner-img" src="${c.banner}" alt="Banner of Chapel No. ${c.number}">
+            <p class="blazon-note">${c.device}</p>
+            <dl>
+                <dt>Worshipful Master</dt><dd>${c.master}</dd>
+                <dt>City</dt><dd>${c.city}/${c.uf}, ${c.country}</dd>
+                <dt>Meeting place</dt><dd>${c.address}</dd>
+                <dt>Meeting dates</dt><dd>${c.meetings}</dd>
+                <dt>Consecrated</dt><dd>${c.founded}</dd>
+            </dl>
+            <p style="margin-top:12px;"><a href="${mapsLink(c)}" target="_blank" rel="noopener" style="color: var(--color-burgundy);">View the address on Google Maps</a></p>
+        `;
+        if (markers[c.number]) markers[c.number].openPopup();
+    }
+
+    function renderMarkers() {
+        Object.values(markers).forEach(m => map.removeLayer(m));
+        Object.keys(markers).forEach(k => delete markers[k]);
+        visibleChapels().forEach(c => {
+            const icon = L.divIcon({
+                className: '',
+                html: `<div class="cm-pin"><img src="${c.banner}" alt=""></div>`,
+                iconSize: [56, 56],
+                iconAnchor: [28, 28],
+                popupAnchor: [0, -28]
+            });
+            const m = L.marker([c.lat, c.lng], { icon: icon }).addTo(map);
+            m.bindPopup(`
+                <img src="${c.banner}" alt="Banner of Chapel No. ${c.number}">
+                <h4>${c.name}</h4>
+                <div><strong>Chapel No. ${c.number}</strong> · ${c.city}/${c.uf}</div>
+                <div style="margin-top:6px;">${c.address}</div>
+                <div style="margin-top:6px;"><a href="${mapsLink(c)}" target="_blank" rel="noopener">View on Google Maps</a></div>
+            `);
+            m.on('click', () => showDetail(c));
+            markers[c.number] = m;
+        });
+        const group = visibleChapels();
+        if (group.length) {
+            map.fitBounds(L.latLngBounds(group.map(c => [c.lat, c.lng])), { padding: [50, 50], maxZoom: 6 });
+        }
+    }
+
+    function renderList() {
+        const grid = document.getElementById('chapelGrid');
+        const noResults = document.getElementById('noResults');
+        const list = visibleChapels();
+
+        if (list.length === 0) {
+            grid.style.display = 'none';
+            noResults.style.display = 'block';
+            return;
+        }
+        grid.style.display = 'grid';
+        noResults.style.display = 'none';
+
+        grid.innerHTML = list.map(c => `
+            <div class="chapel-card chapel-list-item" id="capela-${c.number}" data-number="${c.number}">
+                <img class="chapel-banner" src="${c.banner}" alt="Banner of Chapel No. ${c.number}">
+                <div class="chapel-header">
+                    <p class="chapel-number">Chapel No. ${c.number}</p>
+                    <h3>${c.name}</h3>
+                </div>
+                <div class="chapel-content">
+                    <div class="chapel-info">
+                        <p class="chapel-label">Worshipful Master</p>
+                        <p class="chapel-value master">${c.master}</p>
+                    </div>
+                    <div class="chapel-info">
+                        <p class="chapel-label">Location</p>
+                        <p class="chapel-value">${c.city}/${c.uf}, ${c.country}</p>
+                    </div>
+                    <div class="chapel-info">
+                        <p class="chapel-label">Consecrated</p>
+                        <p class="chapel-value date">${c.founded}</p>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        grid.querySelectorAll('.chapel-list-item').forEach(card => {
+            card.addEventListener('click', () => {
+                const c = chapels.find(x => x.number === Number(card.dataset.number));
+                showDetail(c);
+                map.setView([c.lat, c.lng], 6);
+            });
+        });
+    }
+
+    function render() {
+        renderMarkers();
+        renderList();
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFilter = btn.dataset.filter;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            render();
+        });
+    });
+
+    document.getElementById('searchInput').addEventListener('input', e => {
+        currentSearch = e.target.value;
+        render();
+    });
+
+    render();
+</script>
+
+</body>
+</html>

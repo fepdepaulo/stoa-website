@@ -4,327 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nossas Capelas — Ordem Comemorativa de São Tomás de Acon</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --color-ivory: #FFFAF5;
-            --color-stone-white: #F5F2ED;
-            --color-burgundy: #5C3D2E;
-            --color-gold: #D4AF6F;
-            --color-charcoal: #3C3C3C;
-            --color-warm-gray: #8B7355;
-            --color-light-gray: #E8DED0;
-            --font-serif: Georgia, serif;
-            --font-sans: 'Segoe UI', Roboto, sans-serif;
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        html, body {
-            font-family: var(--font-sans);
-            color: var(--color-charcoal);
-            background: var(--color-ivory);
-        }
-
-        /* HEADER */
-        header {
-            background: var(--color-stone-white);
-            border-bottom: 1px solid var(--color-light-gray);
-            padding: 16px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .header-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .logo h1 {
-            font-size: 20px;
-            color: var(--color-burgundy);
-            font-weight: 500;
-            font-family: var(--font-serif);
-            margin: 0;
-        }
-
-        .logo p {
-            font-size: 11px;
-            color: var(--color-warm-gray);
-            margin: 0;
-            letter-spacing: 1px;
-        }
-
-        nav {
-            display: flex;
-            gap: 24px;
-            align-items: center;
-            font-size: 14px;
-        }
-
-        nav a {
-            color: var(--color-burgundy);
-            text-decoration: none;
-            transition: 0.2s;
-        }
-
-        nav a:hover {
-            color: var(--color-gold);
-        }
-
-        /* HERO */
-        .hero {
-            background: linear-gradient(135deg, var(--color-burgundy) 0%, var(--color-warm-gray) 100%);
-            color: var(--color-ivory);
-            padding: 80px 16px;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 42px;
-            font-family: var(--font-serif);
-            margin-bottom: 16px;
-        }
-
-        .hero p {
-            font-size: 16px;
-            line-height: 1.7;
-        }
-
-        /* CONTENT */
-        section {
-            padding: 60px 16px;
-            background: var(--color-ivory);
-        }
-
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        section h2 {
-            font-size: 24px;
-            color: var(--color-burgundy);
-            margin-bottom: 24px;
-            border-bottom: 2px solid var(--color-gold);
-            padding-bottom: 12px;
-            font-family: var(--font-serif);
-        }
-
-        .section-intro {
-            font-size: 15px;
-            color: var(--color-charcoal);
-            line-height: 1.8;
-            margin-bottom: 32px;
-        }
-
-        /* FILTERS */
-        .filters {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-bottom: 48px;
-        }
-
-        .filter-label {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--color-burgundy);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .filter-btn {
-            padding: 8px 16px;
-            background: transparent;
-            color: var(--color-burgundy);
-            border: 1px solid var(--color-burgundy);
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 13px;
-            transition: all 0.2s;
-        }
-
-        .filter-btn:hover {
-            background: var(--color-burgundy);
-            color: var(--color-ivory);
-        }
-
-        .filter-btn.active {
-            background: var(--color-burgundy);
-            color: var(--color-ivory);
-        }
-
-        /* GRID */
-        .chapel-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-        }
-
-        .chapel-card {
-            background: var(--color-stone-white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            border: 2px solid var(--color-gold);
-            display: flex;
-            flex-direction: column;
-            transition: all 0.2s;
-            cursor: default;
-        }
-
-        .chapel-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .chapel-header {
-            padding: 24px;
-            background: var(--color-burgundy);
-            color: var(--color-ivory);
-        }
-
-        .chapel-number {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0 0 8px;
-            opacity: 0.9;
-        }
-
-        .chapel-header h3 {
-            font-size: 18px;
-            margin: 0;
-            font-weight: 500;
-            font-family: var(--font-serif);
-        }
-
-        .chapel-content {
-            padding: 24px;
-            flex: 1;
-        }
-
-        .chapel-info {
-            margin-bottom: 16px;
-        }
-
-        .chapel-label {
-            font-size: 13px;
-            color: var(--color-warm-gray);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin: 0 0 4px;
-        }
-
-        .chapel-value {
-            font-size: 14px;
-            color: var(--color-charcoal);
-            margin: 0;
-            font-weight: 500;
-        }
-
-        .chapel-value.master {
-            color: var(--color-burgundy);
-        }
-
-        .chapel-value.date {
-            font-style: italic;
-            color: var(--color-gold);
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 60px 16px;
-            color: var(--color-warm-gray);
-        }
-
-        /* FOOTER */
-        footer {
-            background: var(--color-burgundy);
-            color: var(--color-ivory);
-            padding: 48px 16px;
-        }
-
-        .footer-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 32px;
-            margin-bottom: 32px;
-        }
-
-        .footer-section h3 {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-            color: var(--color-gold);
-            font-weight: 500;
-        }
-
-        .footer-section p,
-        .footer-section a {
-            font-size: 13px;
-            color: var(--color-ivory);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .footer-section a:hover {
-            color: var(--color-gold);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(212, 175, 111, 0.3);
-            padding-top: 24px;
-            text-align: center;
-            font-size: 12px;
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 28px;
-            }
-
-            .chapel-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
     <div class="header-container">
         <a href="index.html" class="logo">
@@ -336,165 +20,260 @@
             <a href="historia.html">História</a>
             <a href="lideranca.html">Liderança</a>
             <a href="capelas.html">Capelas</a>
-            <a href="#">Contato</a>
+            <a href="paramentos.html">Paramentos</a>
         </nav>
+        <div class="lang-switch">
+            <a href="capelas.html" class="active" title="Português" aria-label="Português"><svg viewBox="0 0 40 28"><rect width="40" height="28" fill="#009c3b"/><polygon points="20,3 37,14 20,25 3,14" fill="#ffdf00"/><circle cx="20" cy="14" r="6.5" fill="#002776"/></svg></a>
+            <a href="en/capelas.html" title="English" aria-label="English"><svg viewBox="0 0 60 30"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="2"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg></a>
+        </div>
+        <a href="#" class="btn-acesso" aria-disabled="true" title="Em preparação">Acesso ao sistema</a>
     </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
     <div class="hero-content">
         <h1>Nossas Capelas</h1>
-        <p>A Ordem opera através de Capelas locais espalhadas pela América do Sul. Cada Capela é um centro de atividades religiosas, educacionais e caritativas.</p>
+        <p>A Ordem opera através de Capelas locais na América do Sul. Cada Capela é um centro de atividades religiosas, educacionais e caritativas.</p>
     </div>
 </section>
 
-<!-- CONTENT -->
-<section>
+<section class="light">
     <div class="section-container">
-        <!-- Filters -->
-        <div class="filters">
-            <span class="filter-label">Filtrar por país:</span>
-            <button class="filter-btn active" onclick="filterChapels('todos')">Todos os países</button>
-            <button class="filter-btn" onclick="filterChapels('Brasil')">Brasil</button>
-            <button class="filter-btn" onclick="filterChapels('Bolívia')">Bolívia</button>
+        <div class="banner-provincial">
+            <img src="img/banners/provincial.png" alt="Estandarte Provincial da Província da América do Sul">
+            <div>
+                <h2 style="border: none; margin-bottom: 12px; padding: 0;">Estandarte Provincial</h2>
+                <p>Campo de prata com a cruz vermelha da Ordem, filetada do campo. Na primeira quarta parte, a concha dourada da Ordem; na segunda, o Cruzeiro do Sul, com cinco estrelas de ouro.</p>
+                <p>As Capelas usam este estandarte com o brasão próprio de cada uma, posto no ponto de fesse da cruz.</p>
+                <p class="blazon">Estandarte aprovado segundo o §6.6 das Constituições da Ordem.</p>
+            </div>
         </div>
 
-        <!-- Chapel Grid -->
-        <div class="chapel-grid" id="chapelGrid">
-            <!-- Capelas serão inseridas aqui por JavaScript -->
+        <div class="map-wrap">
+            <div id="chapelMap" aria-label="Mapa das Capelas"></div>
+            <div class="map-side">
+                <input type="search" id="searchInput" class="search-input" placeholder="Buscar por nome, número ou cidade">
+                <div class="filters" style="margin-bottom: 0;">
+                    <button class="filter-btn active" data-filter="todos">Todos</button>
+                    <button class="filter-btn" data-filter="Brasil">Brasil</button>
+                    <button class="filter-btn" data-filter="Bolívia">Bolívia</button>
+                </div>
+                <div class="chapel-detail" id="chapelDetail">
+                    <p>Selecione uma Capela no mapa ou na lista para ver seus dados.</p>
+                </div>
+            </div>
         </div>
 
-        <div id="noResults" class="no-results" style="display: none;">
-            <p>Nenhuma capela encontrada para este filtro.</p>
-        </div>
+        <div class="chapel-grid" id="chapelGrid"></div>
+        <div id="noResults" class="no-results" style="display: none;"><p>Nenhuma capela encontrada para este filtro.</p></div>
+        <p class="pending-note">As Capelas da Bolívia aguardam confirmação de constituição, nomes, números e locais de reunião. Os marcadores do mapa ficam no centro de cada cidade; o link "Ver no Google Maps" leva ao endereço exato de reunião.</p>
     </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
     <div class="footer-container">
         <div class="footer-section">
             <h3>Nosso Mote</h3>
-            <p style="font-style: italic; margin-bottom: 8px;">Humilitas et Caritas</p>
+            <p class="footer-motto">Humilitas et Caritas</p>
             <p>Humildade e Caridade</p>
         </div>
-
         <div class="footer-section">
             <h3>Navegação</h3>
             <a href="index.html">A Ordem</a>
             <a href="historia.html">História</a>
             <a href="lideranca.html">Liderança</a>
             <a href="capelas.html">Capelas</a>
-            <a href="#">Contato</a>
+            <a href="paramentos.html">Paramentos</a>
         </div>
-
         <div class="footer-section">
             <h3>Sobre</h3>
             <p>Organização maçônica cristã britânica constituída em 1973. Independente e dedicada à humildade, caridade e serviço. Presente na América do Sul desde 2014.</p>
         </div>
     </div>
-
     <div class="footer-bottom">
         <p>&copy; 2026 Ordem Comemorativa de São Tomás de Acon</p>
         <p>Província da América do Sul</p>
     </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-    // Dados das capelas
+    // Dados conferidos nos by-laws de cada Capela (locais e dias de reunião)
     const chapels = [
         {
-            number: 113,
-            name: 'São Paulo',
-            master: 'Grão-Mestre Desembargador Murilo Pinto',
-            city: 'São Paulo',
-            country: 'Brasil',
-            founded: '16 de junho de 2014'
+            number: 113, name: 'Grão Mestre Desembargador Murilo Pinto', banner: 'img/banners/ch113.jpg',
+            master: 'Grão-Mestre Desembargador Murilo Pinto', city: 'São Paulo', uf: 'SP', country: 'Brasil',
+            founded: '16 de junho de 2014',
+            address: 'Rua Augusta 719, Sobreloja, Bairro Consolação, São Paulo/SP, CEP 01305-100',
+            meetings: '1ª quarta-feira de abril e junho; 3ª quarta-feira de agosto e outubro',
+            device: 'Efígie do Padroeiro, Grão Mestre Desembargador Murilo Pinto, ao centro do cruzamento.',
+            lat: -23.5505, lng: -46.6333
         },
         {
-            number: 129,
-            name: 'Rio de Janeiro I',
-            master: 'Mestre Felício de Paulo',
-            city: 'Rio de Janeiro',
-            country: 'Brasil',
-            founded: 'Janeiro de 2019'
+            number: 129, name: 'Mestre Felício de Paulo', banner: 'img/banners/ch129.jpg',
+            master: 'Mestre Felício de Paulo', city: 'Rio de Janeiro', uf: 'RJ', country: 'Brasil',
+            founded: 'Janeiro de 2019',
+            address: 'Rua Buenos Aires 314, Centro, Rio de Janeiro/RJ, CEP 20061-001',
+            meetings: '1º sábado de abril, junho, agosto e outubro',
+            device: 'Pato-real em voo, ao centro do cruzamento.',
+            lat: -22.9068, lng: -43.1729
         },
         {
-            number: 130,
-            name: 'Rio de Janeiro II',
-            master: 'Venerável Mestre Padre João Ribeiro',
-            city: 'Rio de Janeiro',
-            country: 'Brasil',
-            founded: 'Janeiro de 2019'
+            number: 130, name: 'Venerável Mestre Padre João Ribeiro', banner: 'img/banners/ch130.jpg',
+            master: 'Venerável Mestre Padre João Ribeiro', city: 'Recife', uf: 'PE', country: 'Brasil',
+            founded: 'Janeiro de 2019',
+            address: 'Rua da Aurora 277, Boa Vista, Recife/PE, CEP 50050-000',
+            meetings: '2º sábado de março, junho, setembro e dezembro',
+            device: 'Efígie do Padroeiro, Venerável Mestre Padre João Ribeiro, ao centro do cruzamento.',
+            lat: -8.0476, lng: -34.8770
         },
         {
-            number: 132,
-            name: 'Spiritus Sanctus',
-            master: 'Venerável Mestre',
-            city: 'Rio de Janeiro',
-            country: 'Brasil',
-            founded: 'Janeiro de 2019'
+            number: 132, name: 'Spiritus Sanctus', banner: 'img/banners/ch132.jpg',
+            master: 'Venerável Mestre', city: 'Vitória', uf: 'ES', country: 'Brasil',
+            founded: 'Janeiro de 2019',
+            address: 'Rua Duque de Caxias 139, Centro, Vitória/ES, CEP 29010-120',
+            meetings: '3ª sexta-feira de março, maio, agosto e outubro',
+            device: 'Pomba descendo, símbolo do Espírito Santo, ao centro do cruzamento.',
+            lat: -20.3155, lng: -40.3128
         }
     ];
 
     let currentFilter = 'todos';
+    let currentSearch = '';
+    const markers = {};
 
-    function renderChapels() {
+    const map = L.map('chapelMap').setView([-14.2, -49.5], 4);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        maxZoom: 18,
+        subdomains: 'abcd',
+        attribution: '&copy; OpenStreetMap &copy; CARTO'
+    }).addTo(map);
+
+    function mapsLink(c) {
+        return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(c.address);
+    }
+
+    function visibleChapels() {
+        const q = currentSearch.trim().toLowerCase();
+        return chapels.filter(c => {
+            const byCountry = currentFilter === 'todos' || c.country === currentFilter;
+            const bySearch = !q || [String(c.number), c.name, c.city, c.master].some(v => v.toLowerCase().includes(q));
+            return byCountry && bySearch;
+        });
+    }
+
+    function showDetail(c) {
+        document.getElementById('chapelDetail').innerHTML = `
+            <p class="chapel-label" style="margin:0;">Capela Nº ${c.number}</p>
+            <h3>${c.name}</h3>
+            <img class="banner-img" src="${c.banner}" alt="Estandarte da Capela Nº ${c.number}">
+            <p class="blazon-note">${c.device}</p>
+            <dl>
+                <dt>Venerável Mestre</dt><dd>${c.master}</dd>
+                <dt>Cidade</dt><dd>${c.city}/${c.uf}, ${c.country}</dd>
+                <dt>Endereço de reunião</dt><dd>${c.address}</dd>
+                <dt>Dias de reunião</dt><dd>${c.meetings}</dd>
+                <dt>Consagrada em</dt><dd>${c.founded}</dd>
+            </dl>
+            <p style="margin-top:12px;"><a href="${mapsLink(c)}" target="_blank" rel="noopener" style="color: var(--color-burgundy);">Ver endereço no Google Maps</a></p>
+        `;
+        if (markers[c.number]) markers[c.number].openPopup();
+    }
+
+    function renderMarkers() {
+        Object.values(markers).forEach(m => map.removeLayer(m));
+        Object.keys(markers).forEach(k => delete markers[k]);
+        visibleChapels().forEach(c => {
+            const icon = L.divIcon({
+                className: '',
+                html: `<div class="cm-pin"><img src="${c.banner}" alt=""></div>`,
+                iconSize: [56, 56],
+                iconAnchor: [28, 28],
+                popupAnchor: [0, -28]
+            });
+            const m = L.marker([c.lat, c.lng], { icon: icon }).addTo(map);
+            m.bindPopup(`
+                <img src="${c.banner}" alt="Estandarte da Capela Nº ${c.number}">
+                <h4>${c.name}</h4>
+                <div><strong>Capela Nº ${c.number}</strong> · ${c.city}/${c.uf}</div>
+                <div style="margin-top:6px;">${c.address}</div>
+                <div style="margin-top:6px;"><a href="${mapsLink(c)}" target="_blank" rel="noopener">Ver no Google Maps</a></div>
+            `);
+            m.on('click', () => showDetail(c));
+            markers[c.number] = m;
+        });
+        const group = visibleChapels();
+        if (group.length) {
+            map.fitBounds(L.latLngBounds(group.map(c => [c.lat, c.lng])), { padding: [50, 50], maxZoom: 6 });
+        }
+    }
+
+    function renderList() {
         const grid = document.getElementById('chapelGrid');
         const noResults = document.getElementById('noResults');
+        const list = visibleChapels();
 
-        const filtered = currentFilter === 'todos'
-            ? chapels
-            : chapels.filter(c => c.country === currentFilter);
-
-        if (filtered.length === 0) {
+        if (list.length === 0) {
             grid.style.display = 'none';
             noResults.style.display = 'block';
             return;
         }
-
         grid.style.display = 'grid';
         noResults.style.display = 'none';
 
-        grid.innerHTML = filtered.map(chapel => `
-            <div class="chapel-card">
+        grid.innerHTML = list.map(c => `
+            <div class="chapel-card chapel-list-item" id="capela-${c.number}" data-number="${c.number}">
+                <img class="chapel-banner" src="${c.banner}" alt="Estandarte da Capela Nº ${c.number}">
                 <div class="chapel-header">
-                    <p class="chapel-number">Capela Nº ${chapel.number}</p>
-                    <h3>${chapel.name}</h3>
+                    <p class="chapel-number">Capela Nº ${c.number}</p>
+                    <h3>${c.name}</h3>
                 </div>
                 <div class="chapel-content">
                     <div class="chapel-info">
                         <p class="chapel-label">Venerável Mestre</p>
-                        <p class="chapel-value master">${chapel.master}</p>
+                        <p class="chapel-value master">${c.master}</p>
                     </div>
                     <div class="chapel-info">
                         <p class="chapel-label">Localização</p>
-                        <p class="chapel-value">${chapel.city}, ${chapel.country}</p>
+                        <p class="chapel-value">${c.city}/${c.uf}, ${c.country}</p>
                     </div>
                     <div class="chapel-info">
                         <p class="chapel-label">Consagrada em</p>
-                        <p class="chapel-value date">${chapel.founded}</p>
+                        <p class="chapel-value date">${c.founded}</p>
                     </div>
                 </div>
             </div>
         `).join('');
-    }
 
-    function filterChapels(country) {
-        currentFilter = country;
-
-        // Atualizar botões ativos
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.classList.remove('active');
+        grid.querySelectorAll('.chapel-list-item').forEach(card => {
+            card.addEventListener('click', () => {
+                const c = chapels.find(x => x.number === Number(card.dataset.number));
+                showDetail(c);
+                map.setView([c.lat, c.lng], 6);
+            });
         });
-        event.target.classList.add('active');
-
-        renderChapels();
     }
 
-    // Renderizar na carga
-    renderChapels();
+    function render() {
+        renderMarkers();
+        renderList();
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFilter = btn.dataset.filter;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            render();
+        });
+    });
+
+    document.getElementById('searchInput').addEventListener('input', e => {
+        currentSearch = e.target.value;
+        render();
+    });
+
+    render();
 </script>
 
 </body>
